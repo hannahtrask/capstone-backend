@@ -16,6 +16,14 @@ app.get('/', async (req, res) => {
 	res.json(await data);
 });
 
-//
+// this route will be for requesting lat and long data
+app.get('/request/:lat/:long', async (req, res) => {
+    const { lat, long } = req.params;
+	const response = await fetch(
+		`http://api.powderlin.es/closest_stations?lat=${lat}&lng=${long}&data=true&days=5&count=5`
+	);
+	const data = await response.json();
+	res.json(await data);
+});
 
 app.listen(PORT, () => console.log(`http://localhost:${PORT}`));
