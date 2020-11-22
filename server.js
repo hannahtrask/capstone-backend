@@ -11,7 +11,7 @@ app.use((req, res, next) => {
 });
 
 //mongo connection
-const mongoose = require('../capstone-proxy-express/db/connection');
+const mongoose = require('./db/connection');
 
 //other imports
 const morgan = require('morgan');
