@@ -10,6 +10,21 @@ app.use((req, res, next) => {
 	next();
 });
 
+//mongo connection
+const mongoose = require('../capstone-proxy-express/db/connection');
+
+//other imports
+const morgan = require('morgan');
+
+//middleware
+app.use(express.json());
+app.use(morgan('tiny')); //logging
+
+//controllers
+const imageController = require('./controllers/image')
+app.use('/avysavvy', imageController)
+
+
 app.get('/', async (req, res) => {
 	const response = await fetch('http://api.powderlin.es/closest_stations?lat=43.4695&lng=-110.7892&data=true&days=5&count=5');
 	const data = await response.json();
